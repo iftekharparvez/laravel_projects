@@ -56,4 +56,9 @@ Route::put('/edit-employee/{id}/edit', [EmployeeController::class, 'update'])->m
 
 Route::post('/delete-employee/{id}/delete', [EmployeeController::class, 'destroy']);
 
+
+Route::get('data', [EmployeeController::class, 'index'])->middleware('auth', 'admin')->name('data.index');
+
+
+
 require __DIR__.'/auth.php';

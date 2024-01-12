@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Admin Panel') }}
         </h2>
-
+        <a href="/data" class="underline">Yajra Data</a>
         
         <a href="/add" style="display: block;text-align:right;" class="underline">Add Employee</a>
     </x-slot>

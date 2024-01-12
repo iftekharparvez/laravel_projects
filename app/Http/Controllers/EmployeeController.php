@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use Illuminate\Support\Facades\Storage;
+
+
+use DataTables;
+
+
 class EmployeeController extends Controller
 {
 
@@ -161,4 +166,24 @@ public function update(Request $request, $id)
 
         return redirect('/home');
     }
+
+
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Employee::select('id','name','father_name')->get();
+            return DataTables::of($data)->addIndexColumn()
+            ->addColumn('action', function($row){
+                $btn = ' <a href="javascript:void(0)" class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</a>';
+                return $btn;
+            })
+            ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('data');
+    }
+
+
+
 }
